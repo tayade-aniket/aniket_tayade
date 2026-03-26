@@ -22,7 +22,7 @@ const experiences = [
     ],
   },
   {
-    title: "Jr. Data Scientist Intern",
+    title: "Jr. Data Scientist",
     company: "NextHike IT Solutions",
     icon: "📊",
     iconBg: "#7c3aed",

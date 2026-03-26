@@ -11,20 +11,22 @@ function Particles({ count = 3000 }: { count?: number }) {
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
 
-    const goldColor = new THREE.Color("#cfb584");
-    const whiteColor = new THREE.Color("#ffffff");
+    const gold = new THREE.Color("#cfb584");
+    const white = new THREE.Color("#ffffff");
 
     for (let i = 0; i < count; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 20;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 20;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 10;
+      const i3 = i * 3;
 
-      const t = Math.random();
-      const c = goldColor.clone().lerp(whiteColor, t);
+      // positions
+      pos[i3] = (Math.random() - 0.5) * 20;
+      pos[i3 + 1] = (Math.random() - 0.5) * 20;
+      pos[i3 + 2] = (Math.random() - 0.5) * 10;
 
-      col[i * 3] = c.r;
-      col[i * 3 + 1] = c.g;
-      col[i * 3 + 2] = c.b;
+      // colors
+      const mixed = gold.clone().lerp(white, Math.random());
+      col[i3] = mixed.r;
+      col[i3 + 1] = mixed.g;
+      col[i3 + 2] = mixed.b;
     }
 
     return { positions: pos, colors: col };
@@ -41,14 +43,14 @@ function Particles({ count = 3000 }: { count?: number }) {
   return (
     <points ref={mesh}>
       <bufferGeometry>
-        {/* ✅ FIXED: use args instead of count/array/itemSize */}
+        {/* ✅ FIXED: using args (REQUIRED for production build) */}
         <bufferAttribute
           attach="attributes-position"
-          args={[positions, 3]}
+          args={[positions, 3] as unknown as any}
         />
         <bufferAttribute
           attach="attributes-color"
-          args={[colors, 3]}
+          args={[colors, 3] as unknown as any}
         />
       </bufferGeometry>
 
@@ -58,7 +60,7 @@ function Particles({ count = 3000 }: { count?: number }) {
         transparent
         opacity={0.7}
         sizeAttenuation
-        depthWrite={false}   // 🔥 better blending
+        depthWrite={false}
       />
     </points>
   );
