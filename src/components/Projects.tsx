@@ -5,6 +5,15 @@ import { Eye, Code } from "lucide-react";
 
 const projects = [
   {
+    title: "Indian Road Accident Severity Prediction & Risk Analytics",
+    description: "Built an end-to-end ML system to predict Indian road accident severity using 20K+ crash records and 49 features. Developed preprocessing, EDA, feature engineering, and XGBoost classification, achieving 95.13% accuracy and 99.44% ROC-AUC. Deployed via Streamlit with real-time prediction, hotspot mapping, data exploration, and insights.",
+    tags: ["Python", "Machine Learning", "XGBoost", "Model Evaluation", "Geospatial Analytics", "Streamlit"],
+    color: "#DB2777",
+    bg: "#FDF2F8",
+    github: "https://github.com/tayade-aniket/indian_road_accident_severity",
+    live: "https://indianroadaccidentseverity.streamlit.app/",
+  },
+  {
     title: "Medical Report OCR using YOLO & Tesseract",
     description:
       "End-to-end Medical Report OCR system using YOLO for text detection and Tesseract for text extraction. Automatically converts lab reports into structured CSV/JSON data using Computer Vision & Deep Learning.",
@@ -53,16 +62,6 @@ const projects = [
     bg: "#FFF7ED",
     github: "https://github.com/tayade-aniket",
     live: "https://github.com/tayade-aniket",
-  },
-  {
-    title: "EDA for Real Estate Pricing",
-    description:
-      "Explores real estate pricing data through detailed EDA to uncover key insights into how various factors influence home sale prices using visualization and statistical methods.",
-    tags: ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Jupyter Notebook"],
-    color: "#DB2777",
-    bg: "#FDF2F8",
-    github: "https://github.com/tayade-aniket/eda_for_real_estate_pricing-NHIS",
-    live: "https://github.com/tayade-aniket/eda_for_real_estate_pricing-NHIS",
   },
 ];
 
