@@ -1,15 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --background: #050505;
-  --foreground: #ffffff;
-  --gold: #cfb584;
+  --background: #F8F7F4;
+  --foreground: #111827;
+  --muted: #6B7280;
+  --subtle: #9CA3AF;
+  --gold: #B8860B;
+  --gold-light: #F5EDD0;
+  --border: #E5E7EB;
+  --card: #FFFFFF;
+  --card-hover: #F3F4F6;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -23,6 +33,21 @@ body {
 }
 
 @layer utilities {
+  /* Light card surface — replaces dark glassmorphism */
+  .card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Slightly elevated card for hover states */
+  .card-elevated {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.10);
+  }
+
+  /* Keep .glass as alias for backward compat on any canvas wrappers */
   .glass {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(12px);
@@ -30,11 +55,59 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.05);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   }
-  
+
+  /* Gold-to-dark gradient text — fully visible on light background, no white */
   .text-gradient {
-    background: linear-gradient(90deg, #ffffff 0%, var(--gold) 100%);
+    background: linear-gradient(135deg, #B8860B 0%, #D4A017 40%, #8B6914 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  /* Warm section variant backgrounds */
+  .section-warm {
+    background: linear-gradient(180deg, #F8F7F4 0%, #F3F0EB 100%);
+  }
+
+  .section-pure {
+    background: #ffffff;
+  }
+
+  /* Morphing organic blob */
+  .morph-blob {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    animation: morphAnimation 20s ease-in-out infinite alternate;
+  }
+}
+
+/* Morph animation keyframes */
+@keyframes morphAnimation {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: scale(1) rotate(0deg);
+  }
+  33% {
+    border-radius: 40% 60% 70% 30% / 40% 40% 60% 60%;
+    transform: scale(1.05) rotate(60deg);
+  }
+  66% {
+    border-radius: 70% 30% 50% 50% / 30% 60% 40% 70%;
+    transform: scale(0.95) rotate(120deg);
+  }
+  100% {
+    border-radius: 50% 60% 30% 60% / 60% 40% 70% 30%;
+    transform: scale(1.04) rotate(180deg);
+  }
+}
+
+/* Pulsing glow for neural network nodes */
+@keyframes nodePulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Scroll indicator animation */
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
 }
